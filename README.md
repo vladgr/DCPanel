@@ -104,6 +104,7 @@ Note: passwords stored crypted in database, but they are available decrypted in 
 
 # Recommended Django project's structure in local file system.
 
+```
 projname/
   |--project/
      |--projname/
@@ -125,6 +126,7 @@ projname/
            |--pics/
            |--css/
 
+```
 
 # Conclusion.
 I use these panel in production for myself. It saves me a lot of time and it is much more convenient than using tools like ansible e.t.c. I considered using Docker for each project, but for most of the projects Docker is overhead. For Django sites: virtual environment, nginx, uwsgi, supervisor and database is enough in most cases. 
