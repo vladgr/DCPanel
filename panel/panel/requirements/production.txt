@@ -1,0 +1,7 @@
+django==1.9
+djangorestframework
+pyyaml
+pytest-django
+celery
+redis
+pycrypto

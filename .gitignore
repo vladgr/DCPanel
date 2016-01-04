@@ -1,0 +1,7 @@
+*.pyc
+*.~
+__pycache__/
+panel/panel/db/*
+!panel/panel/db/.keep
+panel/api/migrations/
+panel/run

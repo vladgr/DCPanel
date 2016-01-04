@@ -1,0 +1,28 @@
+{% extends "admin/change_form.html" %}
+
+{% block content %}
+    {% if original %}
+            <div class="submit-row" style="width:400px;">
+                <a style="float:left;" href="{{ original.get_admin_check_server_configs_urls }}">
+                    Check server configs for installation
+                </a>        
+            </div>
+            <div class="clear"></div>
+    {% endif %}    
+
+    {{ block.super }}
+{% endblock %}
+
+{% block after_related_objects %}
+    {% if original %}
+            <div class="submit-row">
+                <a style="float:left;" href="{{ original.get_admin_copy_config_url }}">
+                    Copy configs from other server
+                </a>        
+            </div>
+            <div class="clear"></div>
+
+            
+    {% endif %}
+{% endblock %}
+

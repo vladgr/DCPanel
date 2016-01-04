@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0"><object model="api.country" pk="2"><field name="name" type="CharField">Germany</field></object><object model="api.country" pk="3"><field name="name" type="CharField">Netherlands</field></object><object model="api.country" pk="5"><field name="name" type="CharField">Russia</field></object><object model="api.country" pk="7"><field name="name" type="CharField">USA</field></object></django-objects>

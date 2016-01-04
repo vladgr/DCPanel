@@ -1,0 +1,63 @@
+{% extends "admin/api/custom/base.html" %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="/admin/">Home</a> › 
+        <a href="/admin/api/">Api</a> › 
+        <a href="/admin/api/server/">Servers</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<h1>Copy all configs from one server to another.</h1>    
+
+
+
+<form action="" method="post">
+    {% csrf_token %}
+    <fieldset class="module">
+        <table>
+             <thead>
+                <tr>
+                    <th class="required">From Server</th>
+                    <th class="required">To Server</th>
+                </tr>
+            </thead>
+
+             <tbody>
+                    
+                <tr class="form-row row1 has_original">
+                    <td class="field-type">
+                        <select name="server_from">
+                            <option value="0">---------</option>
+                            {% for obj in servers  %}
+                                <option value="{{ obj.id }}">{{ obj.code }}</option>    
+                            {% endfor %}
+                        </select>
+                    </td>
+
+                    <td class="field-type">
+                        <select name="server_to">
+                            <option value="0">---------</option>
+                            {% for obj in servers %}
+                                <option value="{{ obj.id }}">{{ obj.code }}</option>    
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+
+
+    <fieldset class="module">
+
+        <div class="submit-row">
+            <input type="submit" name="_addanother" value="Copy all configs">
+        </div>
+    </fieldset>
+</form>
+
+
+{% endblock %}

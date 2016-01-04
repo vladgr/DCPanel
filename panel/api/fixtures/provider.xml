@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0"><object model="api.provider" pk="2"><field name="name" type="CharField">Hetzner</field><field name="domain" type="CharField">hetzner.de</field></object><object model="api.provider" pk="7"><field name="name" type="CharField">LeaseWeb</field><field name="domain" type="CharField">leaseweb.com</field></object><object model="api.provider" pk="6"><field name="name" type="CharField">Linode</field><field name="domain" type="CharField">linode.com</field></object></django-objects>
