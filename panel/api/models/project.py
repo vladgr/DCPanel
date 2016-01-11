@@ -46,8 +46,9 @@ class Project(models.Model):
         max_length=255, help_text='Absolute path')
     executables = models.TextField(
         blank=True, default='', help_text='Executable files, relative path')
+    exclude = models.TextField(
+        blank=True, default='', help_text='Exclude dirs, files, relative path')
     is_git = models.BooleanField(default=False, help_text='Git project')
-
     python_version = models.CharField(
         max_length=3, choices=PYTHON_CHOICES, default='-')
     django_version = models.CharField(
@@ -86,12 +87,19 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
-    def get_executables(self):
-        if not self.executables:
+    def textarea_to_list(self, field):
+        value = getattr(self, field)
+        if not value:
             return []
 
-        l = self.executables.split('\n')
+        l = value.split('\n')
         return [x.strip() for x in l if x.strip()]
+
+    def get_executables(self):
+        return self.textarea_to_list('executables')
+
+    def get_exclude(self):
+        return self.textarea_to_list('exclude')
 
 
 @admin.register(Project)

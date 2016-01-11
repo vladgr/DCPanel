@@ -86,6 +86,9 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
     executables = serializers.ListField(
         source='get_executables', read_only=True)
 
+    exclude = serializers.ListField(
+        source='get_exclude', read_only=True)
+
     class Meta:
         model = models.Project
         depth = 4
