@@ -12,6 +12,7 @@ def index(self, request, *args, **kwargs):
 
     errors = validate_server_db1()
     errors += validate_server_db2()
+    errors += validate_server_db3()
     errors += validate_project_db1()
     errors += validate_project_db2()
     errors += validate_uwsgi()
@@ -50,12 +51,24 @@ def validate_server_db1():
 
 
 def validate_server_db2():
-    """Each server database should have root user"""
-    ids = Db.objects.filter(type='S').values_list('id', flat=True)
+    """Each server MySQL database should have root user"""
+    ids = Db.objects.filter(
+        type='S', type_db=Db.MYSQL).values_list('id', flat=True)
     for id in ids:
         res = User.objects.filter(db_id=id, name='root').count()
         if res != 1:
-            return ['Each server database should have single "root" user!']
+            return ['Each server\'s MySQL db should have single "root" user!']
+    return []
+
+
+def validate_server_db3():
+    """Each server Postgre database should have postgres user"""
+    ids = Db.objects.filter(
+        type='S', type_db=Db.POSTGRESQL).values_list('id', flat=True)
+    for id in ids:
+        res = User.objects.filter(db_id=id, name='postgres').count()
+        if res != 1:
+            return ['Each server\'s Postgre db should have single "postgres" user!']
     return []
 
 

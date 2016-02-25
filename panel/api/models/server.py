@@ -26,6 +26,7 @@ class Server(models.Model):
         'Provider', null=True, blank=True, default=None)
     type = models.CharField(max_length=10, choices=TYPE_CHOICES)
     code = models.CharField(max_length=20, unique=True)
+    server_main_user = models.CharField(max_length=50)
     nginx_name = models.CharField(
         max_length=20, blank=True, default='',
         help_text='different on debian/centos')
@@ -67,6 +68,7 @@ class ServerAdmin(admin.ModelAdmin):
         'provider',
         'country',
         'type',
+        'server_main_user',
         'nginx_name',
         'control_dir'
     )

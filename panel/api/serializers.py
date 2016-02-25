@@ -113,6 +113,7 @@ class ServerListSerializer(serializers.ModelSerializer):
             'code',
             'ips',
             'main_ip',
+            'server_main_user',
             'nginx_name',
             'control_dir'
         )
