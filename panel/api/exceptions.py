@@ -14,3 +14,8 @@ class BadRequest(APIException):
 class AccessForbidden(APIException):
     status_code = 403
     default_detail = 'Access Forbidden'
+
+
+class NotImplemented(APIException):
+    status_code = 404
+    default_detail = 'Not implemented'

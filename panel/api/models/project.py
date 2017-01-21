@@ -33,11 +33,12 @@ class Project(models.Model):
         ('1.6', '1.6'),
         ('1.7', '1.7'),
         ('1.8', '1.8'),
-        ('1.9', '1.9')
+        ('1.9', '1.9'),
+        ('1.10', '1.10'),
     )
 
     server = models.ForeignKey('Server', null=True, blank=True, default=None)
-    type = models.CharField(max_length=4, choices=TYPE_CHOICES)
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES)
     name = models.CharField(max_length=50, unique=True)
     domain = models.CharField(max_length=50, blank=True, default='')
     project_dir_server = models.CharField(
@@ -52,7 +53,7 @@ class Project(models.Model):
     python_version = models.CharField(
         max_length=3, choices=PYTHON_CHOICES, default='-')
     django_version = models.CharField(
-        max_length=3, choices=DJANGO_CHOICES, default='-')
+        max_length=4, choices=DJANGO_CHOICES, default='-')
     venv_dir_server = models.CharField(
         max_length=255, blank=True, default='', help_text='Absolute path')
     venv_dir_local = models.CharField(
@@ -67,7 +68,7 @@ class Project(models.Model):
         max_length=255, blank=True, default='', help_text='Relative path')
     is_static_dir_separate = models.BooleanField(
         default=False,
-        help_text='Store static in separate folder, outside project')
+        help_text='Store static in separate folder, outside project (for old)')
     requirements_dir = models.CharField(
         max_length=255, blank=True, default='', help_text='Relative path')
     uwsgi_port = models.PositiveIntegerField(default=0)

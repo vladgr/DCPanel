@@ -9,6 +9,7 @@ from .ip import Ip, IpInline
 class Server(models.Model):
     DEBIAN_8 = 'D8'
     UBUNTU_14 = 'U14'
+    UBUNTU_16 = 'U16'
     CENTOS_7 = 'C7'
     AMAZON = 'AM'
     HEROKU = 'HK'
@@ -16,6 +17,7 @@ class Server(models.Model):
     TYPE_CHOICES = (
         (DEBIAN_8, 'Debian 8'),
         (UBUNTU_14, 'Ubuntu 14'),
+        (UBUNTU_16, 'Ubuntu 16'),
         (CENTOS_7, 'Centos 7'),
         (AMAZON, 'Amazon'),
         (HEROKU, 'Heroku')

@@ -6,6 +6,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import View
 
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework import generics
@@ -114,12 +115,26 @@ class ProjectListByType(generics.ListAPIView):
         return models.Project.objects.filter(**self.kwargs)
 
 
-class ProjectByName(generics.RetrieveAPIView):
+class ProjectByName(APIView):
+    """Returns project or list of projects."""
     serializer_class = sers.ProjectDetailSerializer
 
-    def get_object(self):
-        obj = get_object_or_404(models.Project, **self.kwargs)
-        return obj
+    def get(self, request, **kwargs):
+        name = kwargs['name']
+
+        try:
+            project = models.Project.objects.get(name=name)
+            s = self.serializer_class(project)
+            return Response(s.data)
+        except:
+            pass
+
+        qs = models.Project.objects.filter(name__icontains=name)
+        if qs.count() > 0:
+            s = self.serializer_class(qs, many=True)
+            return Response(s.data)
+
+        return Response(status=404)
 
 
 class ProjectConfListByItem(generics.ListAPIView):
